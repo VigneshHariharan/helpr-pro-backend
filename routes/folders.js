@@ -57,4 +57,14 @@ router.get('/getallpostsandfolders', async (req, res) => {
 	}
 });
 
+router.post('/subscribe', async (req, res) => {
+	try {
+		const folders = req.body.data.folders;
+		const subscribedFolders = await Folder.find({ _id: { $in: folders } });
+		res.json({ message: 'subscribed folders arrived', folders: subscribedFolders, statusCode: 200 });
+	} catch (err) {
+		res.json({ message: err, statusCode: 400 });
+	}
+});
+
 module.exports = router;

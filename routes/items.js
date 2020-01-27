@@ -18,7 +18,6 @@ router.post('/insertpost/', async (req, res) => {
 		// const parentFolderName = data.folderName;
 		const parentId = data.parentId;
 		// or parentId
-
 		const url = req.body.data.url;
 		const post = await Item.findOne({ url: { $eq: url } });
 		if (post) {

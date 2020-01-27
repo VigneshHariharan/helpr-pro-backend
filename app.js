@@ -5,13 +5,16 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv');
 
-const items = require('./routes/items');
 const folders = require('./routes/folders');
+const items = require('./routes/items');
+const counters = require('./routes/likesAndViews');
+
 // app.use(cors());
 app.use(bodyParser.json({ type: 'application/json' }));
 
 app.use('/', items);
 app.use('/', folders);
+app.use('/counters', counters);
 
 mongoose
 	.connect('mongodb+srv://vignesh:Vigneshph@helpr-pro-wap8b.mongodb.net/test', {

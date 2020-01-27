@@ -7,12 +7,12 @@ const string = {
 
 const date = {
 	type: Date,
-	defaultValue: Date.now()
+	default: Date.now()
 };
 
 const counters = {
 	type: Number,
-	defaultValue: 0
+	default: 0
 };
 
 const itemSchema = mongoose.Schema({
@@ -22,7 +22,7 @@ const itemSchema = mongoose.Schema({
 	views: counters,
 	likes: counters,
 	tags: [ String ],
-	linkedBy: { string, defaultValue: '' },
+	linkedBy: { string, default: '' },
 	parentId: {
 		type: mongoose.Schema.Types.ObjectId,
 		defaultValue: 0
