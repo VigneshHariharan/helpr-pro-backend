@@ -21,7 +21,7 @@ const itemSchema = mongoose.Schema({
 	date: date,
 	views: counters,
 	likes: counters,
-	tags: [ String ],
+	tags: [ Object ],
 	linkedBy: { string, default: '' },
 	parentId: {
 		type: mongoose.Schema.Types.ObjectId,

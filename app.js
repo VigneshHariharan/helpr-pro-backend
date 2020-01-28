@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-require('dotenv');
+require('dotenv').config();
 
 const folders = require('./routes/folders');
 const items = require('./routes/items');
@@ -17,13 +17,13 @@ app.use('/', folders);
 app.use('/counters', counters);
 
 mongoose
-	.connect('mongodb+srv://vignesh:Vigneshph@helpr-pro-wap8b.mongodb.net/test', {
+	.connect(process.env.DB_URL, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true
 	})
 	.then(() => console.log('db connected'))
 	.catch((err) => console.log('error in db', err));
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
 	console.log('server listening on 3000...');
 });
