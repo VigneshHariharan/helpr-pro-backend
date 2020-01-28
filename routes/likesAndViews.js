@@ -28,11 +28,23 @@ router.put('/views', async (req, res) => {
 router.post('/findmostlikeditem', async (req, res) => {
 	try {
 		const tags = req.body.data.tags;
-		let items = [];
 		const getAllElementsInTheTags = await Item.find({ tags: { $in: tags } }).sort({ likes: 'descending' }).exec();
-		console.log(getAllElementsInTheTags);
 		res.json({
 			message: 'most liked item in the tag',
+			items: getAllElementsInTheTags,
+			statusCode: 200
+		});
+	} catch (err) {
+		res.json({ message: err, statusCode: 400 });
+	}
+});
+
+router.post('/findmostvieweditem', async (req, res) => {
+	try {
+		const tags = req.body.data.tags;
+		const getAllElementsInTheTags = await Item.find({ tags: { $in: tags } }).sort({ views: 'descending' }).exec();
+		res.json({
+			message: 'most liked viewed in the tag',
 			items: getAllElementsInTheTags,
 			statusCode: 200
 		});

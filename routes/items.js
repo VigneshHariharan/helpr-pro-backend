@@ -46,4 +46,17 @@ router.post('/createPosts', (req, res) => {
 	}
 });
 
+router.post('/moveposts', async (req, res) => {
+	try {
+		const data = req.body.data;
+		const sourceFolderId = data.parentId;
+		const targetFolderId = data.targetId;
+		const url = req.body.data.url;
+		const post = await Item.findOne({ url: { $eq: url } });
+		res.json({ message: 'new post created', data: newPost });
+	} catch (err) {
+		res.json({ message: err, statusCode: 400 });
+	}
+});
+
 module.exports = router;
